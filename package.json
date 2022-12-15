@@ -5,10 +5,10 @@
   "main": "dist/server.js",
   "scripts": {
     "build-and-run": "pnpm build && pnpm start",
-    "build": "ttsc",
+    "build": "pnpm build:schemas && ttsc",
     "start": "node dist/bin.js",
     "clean": "rm -r dist/*",
-    "prepare": "json-to-const -o src/schemas/index.ts src/schemas/*.json"
+    "build:schemas": "json-to-const -o src/schemas/index.ts src/schemas/*.json"
   },
   "keywords": [],
   "author": "",
