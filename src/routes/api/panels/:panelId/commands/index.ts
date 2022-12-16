@@ -16,7 +16,6 @@ import { createLinearQuantiser } from '@/graphics/quantise';
 import { ImageData } from '@/graphics/image';
 import { changeDepth } from '@/graphics/depth';
 import { DrawBitmap1BitMessage, DrawBitmap3BitMessage } from '@/panel/messages/bitmap';
-import { writeFileSync } from 'fs';
 
 export const commands: TypedFastifyPluginAsync = async function (app) {
 	app.post(

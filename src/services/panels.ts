@@ -20,6 +20,11 @@ export async function getPanels() {
 
 export async function getPanel(id: string) {
 	const panels = await getPanels();
+
+	if (id === 'all') {
+		return panels;
+	}
+
 	return panels.find((panel) => panel.id === id);
 }
 
@@ -27,11 +32,10 @@ export async function sendMessageToPanel(
 	id: string,
 	message: PanelMessage | PanelMessage<Uint16Array>
 ) {
-	for (const client of wss.server.clients as Set<WebSocketExtended>) {
-		if (client.clientId === id) {
-			await wss.sendTo(client, message.buffer);
-			return;
-		}
+	const clients: Set<WebSocketExtended> = wss.server.clients;
+	for (const client of clients) {
+		if (client.clientId !== id && id !== 'all') continue;
+		await wss.sendTo(client, message.buffer);
 	}
 }
 
