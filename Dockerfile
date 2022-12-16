@@ -5,7 +5,7 @@ WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 # Install dependencies
 COPY pnpm-lock.yaml ./
-RUN pnpm fetch --dev
+RUN pnpm fetch
 ADD package.json ./
 RUN pnpm install --offline
 # Build
