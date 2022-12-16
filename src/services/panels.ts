@@ -20,11 +20,6 @@ export async function getPanels() {
 
 export async function getPanel(id: string) {
 	const panels = await getPanels();
-
-	if (id === 'all') {
-		return panels;
-	}
-
 	return panels.find((panel) => panel.id === id);
 }
 
