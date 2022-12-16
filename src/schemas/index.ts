@@ -1,1 +1,1 @@
-export const PanelSchema = {"$schema":"https://json-schema.org/draft-07/schema","type":"object","properties":{"id":{"type":"string","pattern":"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"},"refreshedAt":{"type":"string","format":"date-time"}},"required":["id"]} as const;
+export const PanelSchema = {"$schema":"https://json-schema.org/draft-07/schema","type":"object","properties":{"id":{"type":"string","pattern":"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"}},"required":["id"]} as const;
