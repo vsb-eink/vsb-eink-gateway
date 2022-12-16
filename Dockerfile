@@ -7,7 +7,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY pnpm-lock.yaml ./
 RUN pnpm fetch --dev
 ADD package.json ./
-RUN pnpm install --offline --dev
+RUN pnpm install --offline
 # Build
 COPY . ./
 RUN pnpm build
