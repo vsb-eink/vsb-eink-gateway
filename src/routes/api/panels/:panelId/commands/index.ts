@@ -100,10 +100,15 @@ export const commands: TypedFastifyPluginAsync = async function (app) {
 				body: {
 					type: 'object',
 					properties: {
-						url: { type: 'string', format: 'uri' },
+						image: {
+              oneOf: [
+                { type: 'string', format: 'uri' },
+                { type: 'string', pattern: '^data:image/\w+;base64,' },
+              ]
+            },
 						mode: { type: 'string', enum: ['1bit', '3bit'] },
 					},
-					required: ['url', 'mode'],
+					required: ['image', 'mode'],
 				},
 				response: {
 					202: {},
@@ -111,7 +116,7 @@ export const commands: TypedFastifyPluginAsync = async function (app) {
 			},
 		} as const,
 		async function (req, res) {
-			const image = await fetch(req.body.url).then((res) => res.arrayBuffer());
+			const image = await fetch(req.body.image).then((res) => res.arrayBuffer());
 			const pixelBuffer = await sharp(Buffer.from(image))
 				.resize({
 					width: INKPLATE_WIDTH,
