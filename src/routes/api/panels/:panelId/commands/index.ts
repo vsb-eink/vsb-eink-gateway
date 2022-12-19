@@ -1,5 +1,3 @@
-import fetch from 'cross-fetch';
-
 import { TypedFastifyPluginAsync } from '@/routes/api';
 import { ParamsSchema } from '@/routes/api/panels/:panelId/types';
 import { sendMessageToPanel } from '@/services/panels';
