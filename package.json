@@ -1,6 +1,6 @@
 {
   "name": "vsb-eink-gateway",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "main": "dist/server.js",
   "scripts": {
@@ -19,11 +19,11 @@
     "@types/sharp": "^0.31.0",
     "@types/ws": "^8.5.3",
     "eslint": "^8.26.0",
-    "json-to-const": "^1.0.0",
+    "json-to-const": "^1.0.1",
     "pino-pretty": "^9.1.1",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
-    "ttypescript": "^1.5.13",
+    "ttypescript": "^1.5.15",
     "typesafe-event-emitter": "^1.1.0",
     "typescript": "^4.9.4",
     "typescript-transform-paths": "^3.4.4"

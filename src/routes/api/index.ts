@@ -9,8 +9,8 @@ import {
 	RawServerDefault,
 } from 'fastify';
 import { JsonSchemaToTsProvider } from '@fastify/type-provider-json-schema-to-ts';
-import { fastifyAuth } from "@fastify/auth";
-import { fastifySensible } from '@fastify/sensible';
+import fastifyAuth from "@fastify/auth";
+import fastifySensible from '@fastify/sensible';
 
 import { panels } from '@/routes/api/panels';
 import { RawOptions } from 'sharp';
@@ -38,15 +38,20 @@ export type TypedFastifyPluginAsync = FastifyPluginAsync<
 export function createAPIServer({ path }: APIServerArgs) {
   // Create a Fastify server
 	const app = fastify({})
-    .withTypeProvider<JsonSchemaToTsProvider>()
-    .register(fastifySensible)
-    .register(fastifyAuth);
+    .withTypeProvider<JsonSchemaToTsProvider>();
 
-  // Register auth strategies
-  app.addHook('preHandler', app.auth([verifyApiKey]));
+  // Register plugins
+  app.register(fastifySensible);
+  app.register(fastifyAuth);
 
-  // Register routes
-	app.register(panels, { prefix: `${path}/panels` });
+  // Initialize the API
+  app.after(() => {
+    // Register auth strategies
+    app.addHook('preHandler', app.auth([verifyApiKey]));
+
+    // Register routes
+    app.register(panels, { prefix: `${path}/panels` });
+  });
 
 	return {
 		server: app,
