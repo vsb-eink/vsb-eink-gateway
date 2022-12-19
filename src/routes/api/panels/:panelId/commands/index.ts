@@ -102,7 +102,7 @@ export const commands: TypedFastifyPluginAsync = async function (app) {
 					properties: {
 						image: {
               oneOf: [
-                { type: 'string', format: 'uri' },
+                { type: 'string', format: 'url' },
                 { type: 'string', pattern: '^data:image/(png|jpeg|jpg|webp|gif|avif|tiff);base64,' },
               ]
             },
