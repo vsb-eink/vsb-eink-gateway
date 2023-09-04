@@ -1,5 +1,5 @@
 import { TypedFastifyPluginAsync } from '@/routes/api';
-import { ParamsSchema } from '@/routes/api/panels/:panelId/types';
+import { ParamsSchema } from '@/routes/api/panels/[panelId]/types';
 import { sendMessageToPanel } from '@/services/panels';
 import { PerformOtaUpdateMessage, RebootMessage } from '@/panel/messages/system';
 import {
@@ -101,11 +101,15 @@ export const commands: TypedFastifyPluginAsync = async function (app) {
 					type: 'object',
 					properties: {
 						image: {
-              oneOf: [
-                { type: 'string', format: 'url' },
-                { type: 'string', pattern: '^data:image/(png|jpeg|jpg|webp|gif|avif|tiff);base64,' },
-              ]
-            },
+							oneOf: [
+								{ type: 'string', format: 'url' },
+								{
+									type: 'string',
+									pattern:
+										'^data:image/(png|jpeg|jpg|webp|gif|avif|tiff);base64,',
+								},
+							],
+						},
 						mode: { type: 'string', enum: ['1bit', '3bit'] },
 					},
 					required: ['image', 'mode'],

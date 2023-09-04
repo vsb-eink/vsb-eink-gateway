@@ -1,6 +1,6 @@
 import { TypedFastifyInstance, TypedFastifyPluginAsync } from '@/routes/api';
 import { PanelSchema } from '@/schemas';
-import { panelId } from '@/routes/api/panels/:panelId';
+import { panelId } from 'routes/api/panels/[panelId]';
 import { getPanels } from '@/services/panels';
 
 export const panels: TypedFastifyPluginAsync = async function (app) {
